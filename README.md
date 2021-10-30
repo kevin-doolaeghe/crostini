@@ -7,6 +7,7 @@
 ## Sources
 
 * [Reddit - Instructions for Kali Linux on Crostini](https://www.reddit.com/r/Crostini/comments/fj8ddg/instructions_for_kali_linux_on_crostini/)
+* [Chromium - Running Custom Containers Under Chrome OS](https://chromium.googlesource.com/chromiumos/docs/+/master/containers_and_vms.md)
 
 ## Accès au terminal `crosh`
 
@@ -74,36 +75,40 @@ grep 1000:1000 /etc/passwd|cut -d':' -f1
 
 * Donner à l'utilisateur un mot de passe et les permissions super-utilisateur :
 ```
-passwd <username>
-usermod -aG sudo <username>
+passwd doolaeghekevin
+usermod -aG sudo doolaeghekevin
 ```
 
 * Se connecter avec le compte de l'utilisateur non-root :
 ```
-su - <username>
+su - doolaeghekevin
 ```
 
 ## Intégration avec Chrome OS
 
 * Installer les paquets nécessaires :
 ```
-sudo apt install -y gnupg2 psmisc
+sudo apt install -y gnupg2 psmisc git
 ```
 
 * Installer `cros-guest-tools` pour intégrer le conteneur à Chrome OS :
 ```
-sudo apt install ca-certificates
-sudo echo "deb https://storage.googleapis.com/cros-packages stretch main" > /etc/apt/sources.list.d/cros.list
-if [ -f /dev/.cros_milestone ]; then sudo sed -i "s?packages?packages/$(cat /dev/.cros_milestone)?" /etc/apt/sources.list.d/cros.list; fi
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1397BC53640DB551
+sudo apt install apt-transport-https curl gnupg
+curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg
+sudo mv bazel.gpg /etc/apt/trusted.gpg.d/
+echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
 ```
 
 ```
-sudo apt update
+sudo apt update && sudo apt install bazel
 ```
 
 ```
-sudo apt install cros-guest-tools
+git clone https://chromium.googlesource.com/chromiumos/containers/cros-container-guest-tools
+```
+
+```
+bazel build //cros-debs:debs
 ```
 
 * Activer l'intégration du conteneur à Chrome OS :
@@ -113,12 +118,12 @@ systemctl --user enable --now sommelier@0 sommelier-x@0 sommelier@1 sommelier-x@
 
 * Autoriser les applications à tourner en tâche de fond :
 ```
-loginctl enable-linger <username>
+loginctl enable-linger doolaeghekevin
 ```
 
 * Installer le paquet `gnome-terminal` :
 ```
-sudo apt-get install gnome-terminal
+sudo apt install gnome-terminal
 ```
 
 ## Configuration de base du conteneur `penguin`
