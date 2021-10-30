@@ -55,9 +55,34 @@ vsh termina
 lxc list
 ```
 
+* Afficher les conteneurs :
+```
+lxc info <container>
+```
+
+* Créer une snapshot de conteneur :
+```
+lxc snapshot <container> <snapshot>
+```
+
+* Restaurer une snapshot de conteneur :
+```
+lxc restore <container> <snapshot>
+```
+
+* Supprimer un conteneur :
+```
+lxc delete <container>
+```
+
+* Copier un conteneur :
+```
+lxc copy <old> <new>
+```
+
 * Exécuter un shell `bash` sur le conteneur `kali` :
 ```
-lxc exec kali -- bash
+lxc exec <container> -- bash
 ```
 
 ## Configuration initiale du conteneur
@@ -82,38 +107,6 @@ usermod -aG sudo doolaeghekevin
 * Se connecter avec le compte de l'utilisateur non-root :
 ```
 su - doolaeghekevin
-```
-
-## Intégration avec Chrome OS
-
-* Installer les paquets nécessaires :
-```
-sudo apt install -y gnupg2 psmisc git
-```
-
-* Installer `cros-guest-tools` pour intégrer le conteneur à Chrome OS :
-```
-sudo apt install apt-transport-https curl gnupg
-curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg
-sudo mv bazel.gpg /etc/apt/trusted.gpg.d/
-echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
-```
-
-```
-sudo apt update && sudo apt install bazel
-```
-
-```
-git clone https://chromium.googlesource.com/chromiumos/containers/cros-container-guest-tools
-```
-
-```
-bazel build //cros-debs:debs
-```
-
-* Activer l'intégration du conteneur à Chrome OS :
-```
-systemctl --user enable --now sommelier@0 sommelier-x@0 sommelier@1 sommelier-x@1
 ```
 
 * Autoriser les applications à tourner en tâche de fond :
