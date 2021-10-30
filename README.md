@@ -100,23 +100,13 @@ grep 1000:1000 /etc/passwd|cut -d':' -f1
 
 * Donner à l'utilisateur un mot de passe et les permissions super-utilisateur :
 ```
-passwd doolaeghekevin
-usermod -aG sudo doolaeghekevin
+passwd <username>
+usermod -aG sudo <username>
 ```
 
 * Se connecter avec le compte de l'utilisateur non-root :
 ```
-su - doolaeghekevin
-```
-
-* Autoriser les applications à tourner en tâche de fond :
-```
-loginctl enable-linger doolaeghekevin
-```
-
-* Installer le paquet `gnome-terminal` :
-```
-sudo apt install gnome-terminal
+su - <username>
 ```
 
 ## Configuration de base du conteneur `penguin`
