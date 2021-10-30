@@ -150,3 +150,8 @@ sudo apt install apt-transport-https
 sudo apt update
 sudo apt install code
 ```
+
+* Ouvrir les fichiers avec Visual Studio Code par défaut :
+```
+sudo update-alternatives --set editor /usr/bin/code
+```
