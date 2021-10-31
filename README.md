@@ -7,7 +7,11 @@
 ## Sources
 
 * [Reddit - Instructions for Kali Linux on Crostini](https://www.reddit.com/r/Crostini/comments/fj8ddg/instructions_for_kali_linux_on_crostini/)
+* [Installer un dual boot de Kali avec Chrome OS](https://chromeready.com/4714/install-kali-linux-chromebook/)
+* [Kali Linux - Tutoriels](https://www.kali-linux.fr/tutoriels)
 * [Chromium - Running Custom Containers Under Chrome OS](https://chromium.googlesource.com/chromiumos/docs/+/master/containers_and_vms.md)
+* [Crouton - Chrooter un système Linux](https://github.com/dnschneid/crouton)
+* [Crouton - Exemple d'installation d'une distribution Xenial](https://itsfoss.com/install-linux-chromebook/)
 
 ## Accès au terminal `crosh`
 
