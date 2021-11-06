@@ -88,3 +88,27 @@ lxc copy <old> <new>
 ```
 lxc exec <container> -- bash
 ```
+
+## Configuration initiale du conteneur
+
+* Mettre à jour le conteneur :
+```
+sudo apt update
+sudo apt upgrade
+```
+
+* Trouver l'utilisateur non-root créé pour le conteneur :
+```
+grep 1000:1000 /etc/passwd|cut -d':' -f1
+```
+
+* Donner à l'utilisateur un mot de passe et les permissions super-utilisateur :
+```
+passwd <username>
+usermod -aG sudo <username>
+```
+
+* Se connecter avec le compte de l'utilisateur non-root :
+```
+su - <username>
+```
